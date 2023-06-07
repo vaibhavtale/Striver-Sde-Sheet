@@ -1,3 +1,45 @@
+// Optimal Approach......
+
+// TC = O(NlogN).
+// SC = O(N)
+
+class Solution {
+public:
+
+    static bool cmp(vector<int> &a, vector<int> &b){
+
+        return a[0] < b[0];
+    }
+
+    vector<vector<int>> merge(vector<vector<int>>& time) {
+        
+        vector<vector<int>> ans;
+
+        sort(time.begin(), time.end(),cmp);
+
+        ans.push_back(time[0]);
+
+        for(int i=1; i<time.size(); i++){
+
+            if(time[i][0] > ans.back()[1]){
+
+                ans.push_back(time[i]);
+            }
+            else{
+
+                ans.back()[1] = max(time[i][1], ans.back()[1]);
+            }
+        }
+
+        return ans;
+    }
+};
+
+
+
+
+// Brute Force approach..............
+
 // TC = O(NlogN)
 // SC = O(N)
 
